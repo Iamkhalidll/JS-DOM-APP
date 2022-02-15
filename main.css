@@ -3,12 +3,11 @@ body{
     font-size:16px;
     margin: 0;
     padding: 2%;
-    background:#9c9696cc;
+    background-color:white;
     color:black;  
 }
 .container-fluid{
     padding:5%;
-    background-color: white;
     max-width: 1000px;
 }
 .container-sm{
