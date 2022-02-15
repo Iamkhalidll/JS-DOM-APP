@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="main.css" type="text/css">
+        <title>COVID 19 Patient check up</title>
+    </head> 
+    <body>
+        <div class="container-fluid">
+            <div class="container-sm">
+               <form id="forms">
+                   <div class="row"> 
+                        <label for="firstName" class="col-4 col-md-2 ">First Name: </label>
+                        <input type="text" required  id="firstName" class="col-5 col-lg-5">
+                   </div>
+
+                   <div class="row">
+                        <label for="lastName" class="col-4 col-md-2 ">Last Name:</label>
+                        <input type="text"  required id="lastName" class="col-5 col-lg-5"> 
+                   </div>
+                    
+                   <div class="row">
+                        <label for="emailAddress" class="col-4 col-md-2">Email Address:</label>
+                        <input type="text" required id="emailAddress" class="col-5 col-lg-5">
+                   </div>
+
+                    <div class="row">
+                            <label for="gender" class="col-4 col-md-2">Gender:</label>
+                            <select required name="male,female" id="gender" class="col-5 col-lg-3">
+                                <option value="">Select Your Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                    </div>
+
+                    <div>
+                        <input type="checkbox"  id="checkBox" >
+                        <label for="checkBox" id="label">Recently came to Nigeria in the last 14 days?</label>
+                    </div>
+
+                    <div>
+                        <button class="button"
+                        >Submit</button> 
+                    </div>
+                    
+               </form>
+               
+            </div>
+            <div >
+                <table class="list" id="output-table">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Email address</th>
+                        <th>Gender</th>
+                        <th>came to nigeria within the last 14 days?</th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-body">
+                    </tbody>
+                  </table>
+               
+            </div>
+        </div>
+    
+        <script src="index.js"></script>
+    </body>
+</html> 
