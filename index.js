@@ -2,14 +2,16 @@ let tableBody= document.querySelector('tbody');
 let table= document.querySelector('table');
 let checkBox = document.querySelector('#checkBox');
 let myform = document.forms[0];
-myform.addEventListener("submit",function (e) {
+let verifyCreate = "yes"
+let button = document.querySelector('button');
+button.addEventListener("click",function (e) {
 e.preventDefault();
 (function giveClass() {
     table.classList.add("show-table")
 })();
 
-
-//creating constants
+function create() {
+    //creating constants
 let inputs = myform.querySelectorAll("input");
 let value1 = inputs[0].value;
 let value2 = inputs[1].value;
@@ -33,11 +35,16 @@ editButton.textContent = "Edit";
 tableContent_1.textContent = value1 + " " + value2;
 tableContent_2.textContent = value3;
 tableContent_3.textContent = value4;
-if(checkBox.checked) {
-  let  yes = tableContent_4.textContent="Yes";
+function verify(){
+     if(checkBox.checked) {
+  return "Yes"
 } else {
-   let No= tableContent_4.textContent= "No"
+    return "No"
 }
+}
+let answer = verify();
+tableContent_4.textContent = answer
+
 //Appending children
 tableContent_5.appendChild(deleteButton);
 tableContent_6.appendChild(editButton);
@@ -58,36 +65,51 @@ if(value4 !=""){
    
 
 //Delete button 
-deleteButton.onclick = (e) => {
+deleteButton.onclick = () => {
     let parent =tRow.parentElement;
     parent.removeChild(tRow)
 }
 //Edit button
-editButton.onclick = (i=1)=>{
+editButton.onclick =(e)=>{
+    
     inputs[0].value= value1;
     inputs[1].value= value2;
     inputs[2].value= value3;
     document.querySelector('select').value =value4
     document.querySelector("button").textContent="Update";
-    let button = document.querySelector('button');
-    myform.addEventListener("submit",e=>{
-         e.preventDefault();
-          if( document.querySelector("button").textContent=="Update"){ 
-            tableBody.removeChild(tRow);
-          tableContent_1.innerHTML = inputs[0].value + " " + inputs[1];
-          tableContent_2.innerHTML = inputs[2].value ;
-          tableContent_3.innerHTML = document.querySelector('select').value ;
-          if(checkBox.checked) {
-              tableContent_4.innerHTML="Yes";
-          } else {
-              tableContent_4.innerHTML= "No"
-          }}
-          document.querySelector("button").textContent="Submit";
-         
-    })
-    }
+    let parent = editButton.parentElement.parentElement
+    verifyCreate = "no"
+   parent.classList.add('selected')
+   let selectedRow = document.querySelector(".selected")
+   let tds = selectedRow.querySelectorAll('td')
+    console.log(selectedRow)
 
-
-
-
+    button.addEventListener("click",e=>{
+        if(parent.classList.contains("selected")){
+        tds[0].innerHTML =  inputs[0].value +" "+ inputs[1].value    
+        tds[1].innerHTML =inputs[2].value
+        tds[2].innerHTML =document.querySelector('select').value
+    
+            
+              let answer = verify();
+              tds[3].innerHTML = answer 
+            parent.classList.remove('selected')
+            document.querySelector("button").textContent="Submit";
+           
+            inputs[0].value= "";
+            inputs[1].value= "";
+            inputs[2].value= ""
+            document.querySelector('select').value = ""
+            checkBox.value = "";
+            verifyCreate = "yes"
+        }
+          
+                  
+    })}
+}
+  //verifying whether to create or not
+if(verifyCreate == "yes")
+ create()
 })
+
+
