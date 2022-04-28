@@ -4,7 +4,7 @@ let checkBox = document.querySelector('#checkBox');
 let myform = document.forms[0];
 let verifyCreate = "yes"
 let button = document.querySelector('button');
-button.addEventListener("click",function (e) {
+button.addEventListener("submit ",function (e) {
 e.preventDefault();
 (function giveClass() {
     table.classList.add("show-table")
@@ -71,20 +71,23 @@ deleteButton.onclick = () => {
 }
 //Edit button
 editButton.onclick =(e)=>{
-    
+    let parent = editButton.parentElement.parentElement
+    parent.classList.add('selected')
+    let selectedRow = document.querySelector(".selected")
+    let tds = selectedRow.querySelectorAll('td')
     inputs[0].value= value1;
     inputs[1].value= value2;
-    inputs[2].value= value3;
-    document.querySelector('select').value =value4
+    inputs[2].value= tds[2];
+    document.querySelector('select').value = tds[3]
     document.querySelector("button").textContent="Update";
-    let parent = editButton.parentElement.parentElement
+    
     verifyCreate = "no"
-   parent.classList.add('selected')
-   let selectedRow = document.querySelector(".selected")
-   let tds = selectedRow.querySelectorAll('td')
+   
+   
+   
     console.log(selectedRow)
 
-    button.addEventListener("click",e=>{
+    button.addEventListener("submit",e=>{
         if(parent.classList.contains("selected")){
         tds[0].innerHTML =  inputs[0].value +" "+ inputs[1].value    
         tds[1].innerHTML =inputs[2].value
