@@ -4,7 +4,7 @@ let checkBox = document.querySelector('#checkBox');
 let myform = document.forms[0];
 let verifyCreate = "yes"
 let button = document.querySelector('button');
-button.addEventListener("submit ",function (e) {
+myform.addEventListener("submit", (e)=> {
 e.preventDefault();
 (function giveClass() {
     table.classList.add("show-table")
@@ -69,50 +69,56 @@ deleteButton.onclick = () => {
     let parent =tRow.parentElement;
     parent.removeChild(tRow)
 }
-//Edit button
+ //Edit button
 editButton.onclick =(e)=>{
     let parent = editButton.parentElement.parentElement
     parent.classList.add('selected')
     let selectedRow = document.querySelector(".selected")
-    let tds = selectedRow.querySelectorAll('td')
-    Let names = tds[0].textContent.split(" ");
+    let tds = selectedRow.querySelectorAll('td');
+    let names = tds[0].textContent.split(" ")
     inputs[0].value= names[0];
     inputs[1].value= names[1];
     inputs[2].value= tds[1].textContent;
     document.querySelector('select').value = tds[2].textContent
     document.querySelector("button").textContent="Update";
-    If(tds[3].textContent == "Yes"){
-     checkbox.checked}
-    else{checkbox.value = null}
+    if (tds[3].textContent =="yes"){
+        checkBox.checked
+    }else{
+        checkBox.value = null
+    }
     verifyCreate = "no"
-   
-    button.addEventListener("submit",e=>{
-        e.preventDefault();
-        if(parent.classList.contains("selected")){
-        tds[0].innerHTML =  inputs[0].value +" "+ inputs[1].value    
-        tds[1].innerHTML =inputs[2].value
-        tds[2].innerHTML =document.querySelector('select').value
-    
+    console.log(parent)
+     myform.addEventListener("submit",e=>{
+         e.preventDefault();
+         if(parent.classList.contains("selected")){
+         tds[0].innerHTML =  inputs[0].value +" "+ inputs[1].value    
+         tds[1].innerHTML =inputs[2].value
+         tds[2].innerHTML =document.querySelector('select').value
+     
+             
+               let answer = verify();
+               tds[3].innerHTML = answer 
+             parent.classList.remove('selected')
+             document.querySelector("button").textContent="Submit";
             
-              let answer = verify();
-              tds[3].innerHTML = answer 
-            parent.classList.remove('selected')
-            document.querySelector("button").textContent="Submit";
+             inputs[0].value= "";
+             inputs[1].value= "";
+             inputs[2].value= ""
+             document.querySelector('select').value = ""
+             checkBox.value = null;
+             verifyCreate = "yes"
+         }
            
-            inputs[0].value= "";
-            inputs[1].value= "";
-            inputs[2].value= ""
-            document.querySelector('select').value = ""
-            checkBox.value = null;
-            verifyCreate = "yes"
-        }
-          
-                  
-    })}
-}
+                   
+     }
+   )}
+    
+ }
+ 
   //verifying whether to create or not
-if(verifyCreate == "yes")
- create()
+    if(verifyCreate == "yes"){create()}
+
+
 })
 
 
