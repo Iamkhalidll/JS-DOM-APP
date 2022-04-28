@@ -75,19 +75,19 @@ editButton.onclick =(e)=>{
     parent.classList.add('selected')
     let selectedRow = document.querySelector(".selected")
     let tds = selectedRow.querySelectorAll('td')
-    inputs[0].value= value1;
-    inputs[1].value= value2;
-    inputs[2].value= tds[2];
-    document.querySelector('select').value = tds[3]
+    Let names = tds[0].textContent.split(" ");
+    inputs[0].value= names[0];
+    inputs[1].value= names[1];
+    inputs[2].value= tds[1].textContent;
+    document.querySelector('select').value = tds[2].textContent
     document.querySelector("button").textContent="Update";
-    
+    If(tds[3].textContent == "Yes"){
+     checkbox.checked}
+    else{checkbox.value = null}
     verifyCreate = "no"
    
-   
-   
-    console.log(selectedRow)
-
     button.addEventListener("submit",e=>{
+        e.preventDefault();
         if(parent.classList.contains("selected")){
         tds[0].innerHTML =  inputs[0].value +" "+ inputs[1].value    
         tds[1].innerHTML =inputs[2].value
@@ -103,7 +103,7 @@ editButton.onclick =(e)=>{
             inputs[1].value= "";
             inputs[2].value= ""
             document.querySelector('select').value = ""
-            checkBox.value = "";
+            checkBox.value = null;
             verifyCreate = "yes"
         }
           
